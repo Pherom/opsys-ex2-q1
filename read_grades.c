@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <sys/wait.h>
 
 #define LINE_MAX_LENGTH 100
 #define MAX_GRADES_PER_STUDENT 10
@@ -50,6 +51,10 @@ int main() {
     close(temp_std_out);
 
     report_data_summary(student_count);
+
+    while(wait(NULL) != -1);
+
+    exit(student_count);
 }
 
 void report_data_summary(int num_stud)
